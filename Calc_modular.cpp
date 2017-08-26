@@ -4,35 +4,38 @@ using namespace std;
 int main()
 {
     char op;
-    int num1, num2 , num3;
+    int a, b , mod;
 
-    cout << "Enter operator either + or - or * or /: ";
+    cout << "Ingrese operador: '+' o '-' o '*' o 'i'(inverso): ";
     cin >> op;
 
-    cout << "Enter two operands: ";
-    cin >> num1 >> num2 >> num3;
+    cout << "Ingrese el primer numero: ";
+    cin >> a;
+	cout << "Ingrese el segundo numero: ";
+	cin >> b; 
+	cout << "Ingrese el modulo: ";
+	cin >> mod;
 
     switch(op)
     {
         case '+':
-            cout << (num1+num2) % num3;
+            cout << (a+b) % mod;
             break;
 
         case '-':
-            cout << num1-num2;
+            cout << (a-b) % mod ;
             break;
 
         case '*':
-            cout << num1*num2;
+            cout <<(a*b) % mod;
             break;
 
         case '/':
-            cout << num1/num2;
+            cout << "---";
             break;
 
         default:
-            // If the operator is other than +, -, * or /, error message is shown
-            cout << "Error! operator is not correct";
+            cout << "Error! el operador es incorrecto";
             break;
     }
 
