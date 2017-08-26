@@ -41,45 +41,49 @@ int fecha::show_anio()
 }
 void fecha::calcular(fecha d1,fecha d2)
 {
-    long d=0,m=0,a=0,year=0;
+    long d=1,m=0,a=0,year=0;
     year=d1.anio;
     a=d2.anio-d1.anio;
     if(a==0)
         m=d2.mes-d1.mes;
-    else{
-        if(a<2)
+    if(a==1)
             m=12-(d1.mes)+d2.mes;
-        else
-            m=((a-2)*12)+ 12-(d1.mes) + d2.mes;
-    }
+    if(a>1)
+	{
+		if(a-2==0)
+			m=m+12+ 12-(d1.mes) + d2.mes;
+		else
+			m=m+((a-1)*12)+ 12-(d1.mes) + d2.mes;
+	}
+    
     if(a==0&&(d2.mes-d1.mes)==0)
         d=d2.dia-d1.dia;
     if(a==0&&(d2.mes-d1.mes)>0)
     {
-        d = (dia_mes(d1.mes,d1.anio)) - d1.dia;
-        cout<<d;
+        d = d+(dia_mes(d1.mes,d1.anio)) - d1.dia;
         for(int l=(d1.mes)+1;l<d2.mes;l++)
         {
+			
             d=d+dia_mes(l,year);
         }
         d = d + d2.dia;
     }
     if(a>=1)
     {
-        for(int i=(d1.mes)+1;i<=12;i++)
+		d = d+(dia_mes(d1.mes,d1.anio)) - d1.dia;
+		for(int i=(d1.mes)+1;i<=12;i++)
         {
             d=d+dia_mes(i,year);
         }
-
-
-    for(int j=year+1;j<=d2.anio-1;j++)
-    {
-        d=d+(365+bisiesto(year));
-    }
-    for(int k=1;k<=d2.mes-1;k++)
-    {
-        d=d+dia_mes(k,d2.anio);
-    }
+	    for(int j=year+1;j<=d2.anio-1;j++)
+		{
+			d=d+(365+bisiesto(j));
+		}
+		for(int k=1;k<=d2.mes-1;k++)
+		{
+			d=d+dia_mes(k,d2.anio);
+		}
+		d = d + d2.dia;
     }
     cout<<"Han pasado: "<<d*24*60*60<< " segundos.\n";
     cout<<"Han pasado: "<<d*24*60<< " minutos.\n";
